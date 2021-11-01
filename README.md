@@ -7,7 +7,7 @@ Linux is well-known for being one of the most secure operating systems available
 This script is designed to be executed on a freshly installed **Ubuntu Server 20.04** server.
 
 ```bash
-wget -O ./install.sh https://condu.ro/install.sh && chmod +x ./install.sh && sudo ./install.sh
+wget -O ./install.sh https://raw.githubusercontent.com/rsilverioo/ubuntu/main/install.sh && chmod +x ./install.sh && sudo ./install.sh
 ```
 ![](https://i.imgur.com/PXK7Ctk.gif)
 
