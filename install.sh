@@ -38,20 +38,20 @@ function _task {
 
 # _cmd performs commands with error checking
 function _cmd {
-    # empty conduro.log
-    > conduro.log
+    # empty server_harden.log
+    > server_harden.log
     # hide stdout, on error we print and exit
-    if eval "$1" 1> /dev/null 2> conduro.log; then
+    if eval "$1" 1> /dev/null 2> server_harden.log; then
         return 0 # success
     fi
     # read error from log and add spacing
     printf "${OVERWRITE}${LRED} [X]  ${TASK}${LRED}\n"
     while read line; do 
         printf "      ${line}\n"
-    done < conduro.log
+    done < server_harden.log
     printf "\n"
     # remove log file
-    rm conduro.log
+    rm server_harden.log
     # exit installation
     exit 1
 } 
@@ -65,7 +65,7 @@ printf "${YELLOW}
  ██ ▄▄ ▄█▀▄ ▐█▐▐▌▐█· ▐█▌█▌▐█▌▐▀▀▄  ▄█▀▄ 
  ▐███▌▐█▌.▐▌██▐█▌██. ██ ▐█▄█▌▐█•█▌▐█▌.▐▌
  ·▀▀▀  ▀█▄▀▪▀▀ █▪▀▀▀▀▀•  ▀▀▀ .▀  ▀ ▀█▄▀▪
- ${LBLACK}Hardening ${YELLOW}Ubuntu 20.04 ${LBLACK}https://condu.ro
+ ${LBLACK}Hardening ${YELLOW}Ubuntu 20.04 ${LBLACK} Based on https://condu.ro
  
 "
 
@@ -111,11 +111,11 @@ _task "update ntp servers"
 
 # description
 _task "update sysctl.conf"
-    _cmd 'wget --timeout=5 --tries=2 --quiet -c https://raw.githubusercontent.com/conduro/ubuntu/main/sysctl.conf -O /etc/sysctl.conf'
+    _cmd 'wget --timeout=5 --tries=2 --quiet -c https://raw.githubusercontent.com/rsilverioo/ubuntu/main/sysctl.conf -O /etc/sysctl.conf'
 
 # description
 _task "update sshd_config"
-    _cmd 'wget --timeout=5 --tries=2 --quiet -c https://raw.githubusercontent.com/conduro/ubuntu/main/sshd.conf -O /etc/ssh/sshd_config'
+    _cmd 'wget --timeout=5 --tries=2 --quiet -c https://raw.githubusercontent.com/rsilverioo/ubuntu/main/sshd.conf -O /etc/ssh/sshd_config'
 
 # description
 _task "disable system logging"
